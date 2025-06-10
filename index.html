@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OER-bot</title>
+    <style>
+        body {
+            background-image: url('https://media.licdn.com/dms/image/v2/C4E1BAQGvpyQZAqX3BA/company-background_10000/company-background_10000/0/1606907931603/instituut_voor_recht_hu_cover?e=2147483647&v=beta&t=xOmKRIUORo3FjY56cFxCkNEz0au2wXYjHWFC7eE6yDc');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: Arial;
+            max-width: 600px;
+            margin: 20px auto;
+            color: #000;
+        }
+        #chatbox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .message { margin: 5px 0; }
+        .user { color: blue; }
+        .bot { color: red; }
+    </style>
+</head>
+<body>
+    <h2>OER-bot&#129302;</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="input" placeholder="Typ hier je bericht..." />
+    <button onclick="sendMessage()">Verzend</button>
+
+    <script>
+        function getBotResponse(userInput) {
+            const input = userInput.toLowerCase();
+            if (input.includes("hallo")) {
+                return "Hey";
+            } else if (input.includes("ik heb een vraag")) {
+                return "natuurlijk, hoe kan ik helpen?";
+            } else if (input.includes("wanneer kom ik in aanmerking?")) {
+                return "je kunt een extra kans aanvragen bij individuele overmacht, zoals: ziekte, fysieke of psychische beperking, zwangerschap, bijzondere familieomstandigheden of persoonlijke omstandigheden";
+            } else if (input.includes("hoe doe ik dit?")) {
+                return "Schrijf een verzoek aan de examencommissie waarin je jouw situatie uitlegt. Leg uit waarom je niet kon deelnemen aan de toets. Stuur bewijsstukken mee (bijvoorbeeld een medische verklaring of een schriftelijke toelichting van je studieadviseur). Dien je aanvraag direct in na het falen van je herkansing. Twijfel je over welke bewijzen nodig zijn? Vraag dan hulp aan je studieadviseur";
+            } else if (input.includes("doei")) {
+                return "Tot ziens!";
+            } else {
+                return "Sorry, ik begrijp het niet.";
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById("input");
+            const message = input.value;
+            if (!message) return;
+
+            const chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<div class="message user">You: ${message}</div>`;
+            input.value = "";
+
+            const response = getBotResponse(message);
+            chatbox.innerHTML += `<div class="message bot">Bot: ${response}</div>`;
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+
+    <a href="https://husite.nl/hu-begeleidt/optimaal-studeren/examencommissie/" style="position: fixed; top: 0; left: 0; z-index: 1000;">
+        <img src="https://www.utrechtdebatingsociety.nl/wp-content/uploads/2016/07/hu-og.png" alt="HU Logo" style="width:100px;height:100px;">
+    </a>
+</body>
+</html>
