@@ -30,36 +30,37 @@
     <div id="chatbox"></div>
     <input type="text" id="input" placeholder="Typ hier je bericht..." />
     <button onclick="sendMessage()">Verzend</button>
-    
-<script>
+
+    <script>
         function getBotResponse(userInput) {
-            const input = userInput.toLowerCase();
+            const input = userInput.toLowerCase().trim();
             if (input.includes("hallo")) {
-                return "hallo, hoe kan ik je helpen?";
+                return "Hallo, hoe kan ik je helpen?";
             } else if (input.includes("ik heb een vraag")) {
-                return "natuurlijk, hoe kan ik helpen?";
-            } else if (input.includes("wanneer kom ik in aanmerking?")) {
-                return "je kunt een extra kans aanvragen bij individuele overmacht, zoals: ziekte, fysieke of psychische beperking, zwangerschap, bijzondere familieomstandigheden of persoonlijke omstandigheden";
-            } else if (input.includes("hoe vraag ik een derde kans aan?")) {
-                return "schrijf een verzoek aan de examencommissie waarin je jouw situatie uitlegt. Leg uit waarom je niet kon deelnemen aan de toets. Stuur bewijsstukken mee (bijvoorbeeld een medische verklaring of een schriftelijke toelichting van je studieadviseur). Dien je aanvraag direct in na het falen van je herkansing. Twijfel je over welke bewijzen nodig zijn? Vraag dan hulp aan je studieadviseur";
+                return "Natuurlijk, hoe kan ik helpen?";
+            } else if (input.includes("wanneer kom ik in aanmerking")) {
+                return "Je kunt een extra kans aanvragen bij individuele overmacht, zoals: ziekte, fysieke of psychische beperking, zwangerschap, bijzondere familieomstandigheden of persoonlijke omstandigheden.";
+            } else if (input.includes("hoe vraag ik een derde kans aan")) {
+                return "Schrijf een verzoek aan de examencommissie waarin je jouw situatie uitlegt. Leg uit waarom je niet kon deelnemen aan de toets. Stuur bewijsstukken mee (bijvoorbeeld een medische verklaring of een schriftelijke toelichting van je studieadviseur). Dien je aanvraag direct in na het falen van je herkansing. Twijfel je over welke bewijzen nodig zijn? Vraag dan hulp aan je studieadviseur.";
             } else if (input.includes("doei")) {
-                return "tot ziens!";
+                return "Tot ziens!";
             } else {
-                return "sorry, ik begrijp het niet.";
+                return "Sorry, ik begrijp het niet.";
             }
         }
 
         function sendMessage() {
-            const input = document.getElementById("input");
-            const message = input.value;
+            const inputField = document.getElementById("input");
+            const message = inputField.value.trim();
             if (!message) return;
 
             const chatbox = document.getElementById("chatbox");
-            chatbox.innerHTML += `<div class="message user">You: ${message}</div>`;
-            input.value = "";
+            chatbox.innerHTML += `<div class="message user">Jij: ${message}</div>`;
 
             const response = getBotResponse(message);
             chatbox.innerHTML += `<div class="message bot">Bot: ${response}</div>`;
+
+            inputField.value = "";
             chatbox.scrollTop = chatbox.scrollHeight;
         }
     </script>
